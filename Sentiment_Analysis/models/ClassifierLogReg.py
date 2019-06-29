@@ -1,8 +1,6 @@
-import keras, sys, os, csv, pickle, numpy
-from keras import optimizers
-from keras.layers import Embedding, LSTM, Dense, Dropout
-from sklearn import datasets
-from copy import deepcopy
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
 
 from . import Classifier
 from logger import *
@@ -19,4 +17,3 @@ class ClassifierFeedFwd(Classifier.Classifier):
 
     def experiment(self):
         (x_train, y_train), (x_test, y_test) = self.getData()
-        
