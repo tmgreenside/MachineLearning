@@ -85,7 +85,7 @@ def getReviewsData():
     print("Data loaded.")
 
     x = numpy.concatenate((x_pos, x_neg))
-    y = keras.utils.to_categorical(numpy.concatenate((y_pos, y_neg)),2)
+    y = numpy.concatenate((y_pos, y_neg))
 
     x_train = numpy.concatenate((x[:int(len(x)/4)], x[int(3 * len(x) / 4):]))
     y_train = numpy.concatenate((y[:int(len(y)/4)], y[int(3 * len(y) / 4):]))

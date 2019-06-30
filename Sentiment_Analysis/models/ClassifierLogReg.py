@@ -20,6 +20,6 @@ class ClassifierLogReg(Classifier.Classifier):
     def experiment(self):
         (x_train, y_train), (x_test, y_test) = self.getData()
         self.model.fit(x_train, y_train)
-        acc = accuracy_score(y_test, model.predict(x_test))
+        acc = accuracy_score(y_test, self.model.predict(x_test))
         logger.log("Accuracy: {}".format(acc))
         return

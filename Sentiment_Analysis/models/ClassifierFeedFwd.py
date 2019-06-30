@@ -38,6 +38,8 @@ class ClassifierFeedFwd(Classifier.Classifier):
 
     def experiment(self):
         (x_train, y_train), (x_test, y_test) = self.getData()
+        y_train = keras.utils.to_categorical(y_train, 2)
+        y_test = keras.utils.to_categorical(y_test, 2)
         self.model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=self.num_epochs)
         _, acc = self.model.evaluate(x_test, y_test)
         logger.log("Accuracy: {}".format(acc))
