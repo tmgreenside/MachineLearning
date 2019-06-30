@@ -11,13 +11,13 @@ from logger import *
 from models import ClassifierFeedFwd
 
 def experiment():
-    # logger.log("Working with Feed Forward model.")
-    # modelFwd = ClassifierFeedFwd.ClassifierFeedFwd()
-    # modelFwd.experiment()
+    logger.log("Working with Feed Forward model.")
+    modelFwd = ClassifierFeedFwd.ClassifierFeedFwd()
+    modelFwd.experiment()
 
-    logger.log("Working with the Logistic Regression model.")
-    modelLogReg = ClassifierLogReg()
-    modelLogReg.experiment()
+    # logger.log("Working with the Logistic Regression model.")
+    # modelLogReg = ClassifierLogReg()
+    # modelLogReg.experiment()
 
 if __name__ == "__main__":
     try:

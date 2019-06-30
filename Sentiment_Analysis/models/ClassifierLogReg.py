@@ -8,7 +8,7 @@ from logger import *
 class ClassifierLogReg(Classifier.Classifier):
     def __init__(self):
         self.model = self.buildModel()
-        logger.log("Logistic regression model build.")
+        logger.log("Logistic regression model built.")
 
     def buildModel(self):
         model = LogisticRegression(C=0.05)

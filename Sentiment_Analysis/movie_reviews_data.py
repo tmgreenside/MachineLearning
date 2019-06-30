@@ -42,11 +42,18 @@ def vectorizeWordIndex(output, reduced=True, max=5000, max_words=10000):
     else:
         path = DATAPATH_TRAIN + "neg/"
     files = os.listdir(path)
-    if reduced == False or len(DICT) < max_words:
+    if reduced == False or len(files) < max:
         vectorLength = len(files)
     else:
         vectorLength = max
-    vectors = numpy.zeros((vectorLength, max_words))
+    if max_words > len(DICT):
+        words = len(DICT)
+    else:
+        if reduced == True:
+            words = max_words
+        else:
+            words = len(DICT)
+    vectors = numpy.zeros((vectorLength, words))
     if output == 0:
         y_vector = numpy.zeros(vectorLength)
     else:
@@ -63,7 +70,7 @@ def vectorizeWordIndex(output, reduced=True, max=5000, max_words=10000):
                     else:
                         wordCounts[word] = 1
 
-        for j in range(max_words):
+        for j in range(words):
             if DICT[j] in wordCounts:
                 vectors[i][j] += wordCounts[DICT[j]]
 
