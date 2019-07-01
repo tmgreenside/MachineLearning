@@ -1,21 +1,23 @@
 """
 Sentiment labels:
-0 - negative
-1 - somewhat negative
-2 - neutral
-3 - somewhat positive
-4 - positive
+0 - positive
+1 - negative
 """
 import sys, os
 from models.ClassifierFeedFwd import ClassifierFeedFwd
+from models.ClassifierLogReg import ClassifierLogReg
 
 from logger import *
 from models import ClassifierFeedFwd
 
 def experiment():
-    logger.log("Working with Feed Forward model")
+    logger.log("Working with Feed Forward model.")
     modelFwd = ClassifierFeedFwd.ClassifierFeedFwd()
     modelFwd.experiment()
+
+    # logger.log("Working with the Logistic Regression model.")
+    # modelLogReg = ClassifierLogReg()
+    # modelLogReg.experiment()
 
 if __name__ == "__main__":
     try:

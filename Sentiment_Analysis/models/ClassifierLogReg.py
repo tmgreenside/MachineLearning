@@ -1,22 +1,25 @@
-import keras, sys, os, csv, pickle, numpy
-from keras import optimizers
-from keras.layers import Embedding, LSTM, Dense, Dropout
-from sklearn import datasets
-from copy import deepcopy
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
 
 from . import Classifier
 from logger import *
 
-class ClassifierFeedFwd(Classifier.Classifier):
+class ClassifierLogReg(Classifier.Classifier):
     def __init__(self):
-        pass
+        self.model = self.buildModel()
+        logger.log("Logistic regression model built.")
 
     def buildModel(self):
-        pass
+        model = LogisticRegression(C=0.05)
+        return model
 
     def getModel(self):
-        return model
+        return self.model
 
     def experiment(self):
         (x_train, y_train), (x_test, y_test) = self.getData()
-        
+        self.model.fit(x_train, y_train)
+        acc = accuracy_score(y_test, self.model.predict(x_test))
+        logger.log("Accuracy: {}".format(acc))
+        return
