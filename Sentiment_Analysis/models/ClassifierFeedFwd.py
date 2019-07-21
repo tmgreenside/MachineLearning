@@ -6,18 +6,20 @@ from copy import deepcopy
 
 from . import Classifier
 from logger import *
+from data.IMDB_movie_reviews import IMDB_movie_reviews
 
 class ClassifierFeedFwd(Classifier.Classifier):
     def __init__(self):
         self.batch_size = 64
-        self.num_epochs = 2
+        self.num_epochs = 1
         self.embedding_size = 32
         self.num_words = 12000
         self.dropout_rate = 0.1
 
         self.model = self.buildModel()
+        self.data = IMDB_movie_reviews()
 
-        logger.log("Feed Forward model build.")
+        logger.log("Feed Forward model built.")
 
     # model definition taken from
     # https://towardsdatascience.com/a-beginners-guide-on-sentiment-analysis-with-rnn-9e100627c02e
@@ -37,7 +39,9 @@ class ClassifierFeedFwd(Classifier.Classifier):
         return model
 
     def experiment(self):
-        (x_train, y_train), (x_test, y_test) = self.getData()
+        (x_train, y_train), (x_test, y_test) = self.data.get_data()
+        y_train = keras.utils.to_categorical(y_train)
+        y_test = keras.utils.to_categorical(y_test)
         self.model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=self.num_epochs)
         _, acc = self.model.evaluate(x_test, y_test)
         logger.log("Accuracy: {}".format(acc))
