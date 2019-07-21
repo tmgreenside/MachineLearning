@@ -14,7 +14,7 @@ class ClassifierFeedFwd(Classifier.Classifier):
         self.num_epochs = 1
         self.embedding_size = 32
         self.num_words = 12000
-        self.dropout_rate = 0.1
+        self.dropout_rate = 0.2
 
         self.model = self.buildModel()
         self.data = IMDB_movie_reviews()
@@ -39,10 +39,20 @@ class ClassifierFeedFwd(Classifier.Classifier):
         return model
 
     def experiment(self):
+<<<<<<< HEAD
         (x_train, y_train), (x_test, y_test) = self.data.get_data()
         y_train = keras.utils.to_categorical(y_train)
         y_test = keras.utils.to_categorical(y_test)
+=======
+        (x_train, y_train), (x_test, y_test) = self.getData()
+        y_train = keras.utils.to_categorical(y_train, 2)
+        y_test = keras.utils.to_categorical(y_test, 2)
+>>>>>>> b98ca39a6b91f546ff238bb8c46bdbf11f3e8fdb
         self.model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=self.num_epochs)
         _, acc = self.model.evaluate(x_test, y_test)
         logger.log("Accuracy: {}".format(acc))
+        return
+
+    def hyperparameter_tuning(params_set):
+
         return
