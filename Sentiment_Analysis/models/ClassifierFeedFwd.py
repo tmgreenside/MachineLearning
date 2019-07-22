@@ -46,7 +46,3 @@ class ClassifierFeedFwd(Classifier.Classifier):
         _, acc = self.model.evaluate(x_test, y_test)
         logger.log("Accuracy: {}".format(acc))
         return
-
-    def hyperparameter_tuning(params_set):
-
-        return

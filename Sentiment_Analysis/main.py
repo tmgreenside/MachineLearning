@@ -1,20 +1,21 @@
 import sys, os
 from models.ClassifierFeedFwd import ClassifierFeedFwd
 from models.ClassifierLogReg import ClassifierLogReg
+from models.ClassifierConvNN import ClassifierConvNN
 
 from logger import *
 from models import ClassifierFeedFwd
 
 def experiment():
-    logger.log("Working with Logistic Regression model")
-    modelFwd = ClassifierLogReg()
-    modelFwd.experiment()
-    logger.log("Working with Feed Forward model.")
-    modelFwd = ClassifierFeedFwd.ClassifierFeedFwd()
-    modelFwd.experiment()
-    # logger.log("Working with Convolutional model.")
+    # logger.log("Working with Logistic Regression model")
+    # modelFwd = ClassifierLogReg()
+    # modelFwd.experiment()
+    # logger.log("Working with Feed Forward model.")
     # modelFwd = ClassifierFeedFwd.ClassifierFeedFwd()
     # modelFwd.experiment()
+    logger.log("Working with Convolutional model.")
+    modelCNN = ClassifierConvNN()
+    modelCNN.experiment()
 
 
 if __name__ == "__main__":

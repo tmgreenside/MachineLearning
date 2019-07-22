@@ -20,6 +20,7 @@ NEG = "neg.dat"
 class IMDB_movie_reviews(Data):
     def __init__(self, max_words=MAX_WORDS, percent_train=0.25):
         self.max_words = max_words
+        self.percent_train = percent_train
         self.build_dict()
         if len(self.dict) < self.max_words:
             self.max_words = len(self.dict)
@@ -40,10 +41,10 @@ class IMDB_movie_reviews(Data):
         self.x = numpy.concatenate((self.x_pos, self.x_neg))
         self.y = numpy.concatenate((self.y_pos, self.y_neg))
 
-        self.x_train = numpy.concatenate((self.x[:int(len(self.x)/4)], self.x[int(3 * len(self.x) / 4):]))
-        self.y_train = numpy.concatenate((self.y[:int(len(self.y)/4)], self.y[int(3 * len(self.y) / 4):]))
-        self.x_test = self.x[int(len(self.x)/4):int(3 * len(self.x) / 4)]
-        self.y_test = self.y[int(len(self.y)/4):int(3*len(self.y)/4)]
+        self.x_train = numpy.concatenate((self.x[:int(len(self.x)*(self.percent_train/2))], self.x[int(3 * len(self.x) * (self.percent_train/2)):]))
+        self.y_train = numpy.concatenate((self.y[:int(len(self.y)*(self.percent_train/2))], self.y[int(3 * len(self.y) * (self.percent_train/2)):]))
+        self.x_test = self.x[int(len(self.x)*(self.percent_train/2)):int(3 * len(self.x) * (self.percent_train/2))]
+        self.y_test = self.y[int(len(self.y)*(self.percent_train/2)):int(3*len(self.y)*(self.percent_train/2))]
 
     def get_data(self):
         return (self.x_train, self.y_train), (self.x_test, self.y_test)
