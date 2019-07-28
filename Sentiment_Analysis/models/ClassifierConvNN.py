@@ -1,6 +1,6 @@
 import keras, sys, os, csv, pickle, numpy
 from keras import optimizers
-from keras.layers import Flatten, LSTM, Dense, Dropout, Conv1D, MaxPooling1D
+from keras.layers import Flatten, LSTM, Dense, Dropout, Conv1D, MaxPooling1D, BatchNormalization
 from sklearn import datasets
 from copy import deepcopy
 
@@ -11,7 +11,7 @@ from data.IMDB_movie_reviews import IMDB_movie_reviews
 class ClassifierConvNN(Classifier.Classifier):
     def __init__(self, model_file=None, percent_train=0.5):
         self.batch_size = 64
-        self.num_epochs = 5
+        self.num_epochs = 1
         self.embedding_size = 32
         self.num_words = 12000
         self.dropout_rate = 0.5
@@ -32,10 +32,12 @@ class ClassifierConvNN(Classifier.Classifier):
             activation='relu',
             input_shape=(self.num_words,1)
         ))
+        model.add(BatchNormalization(axis=1))
         model.add(Conv1D(filters=self.num_filters,
             kernel_size=self.kernel_size,
             activation='relu'
         ))
+        model.add(BatchNormalization(axis=1))
         model.add(Dropout(self.dropout_rate))
         model.add(MaxPooling1D(pool_size=2))
         model.add(Flatten())

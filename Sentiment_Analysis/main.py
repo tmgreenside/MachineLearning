@@ -4,7 +4,6 @@ from models.ClassifierLogReg import ClassifierLogReg
 from models.ClassifierConvNN import ClassifierConvNN
 
 from logger import *
-from models import ClassifierFeedFwd
 
 def experiment():
     # logger.log("Working with Logistic Regression model")
