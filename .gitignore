@@ -1,4 +1,6 @@
 Sentiment_Analysis/aclimdb*
+FaceNet/lfw*
 *.dat
 *.log
 *.pyc
+*.tar
