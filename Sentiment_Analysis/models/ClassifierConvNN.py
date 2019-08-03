@@ -1,6 +1,6 @@
 import keras, sys, os, csv, pickle, numpy
 from keras import optimizers
-from keras.layers import Flatten, LSTM, Dense, Dropout, Conv1D, MaxPooling1D, BatchNormalization
+from keras.layers import Flatten, Dense, Dropout, Conv1D, MaxPooling1D, BatchNormalization
 from sklearn import datasets
 from copy import deepcopy
 

@@ -2,6 +2,7 @@ import sys, os
 from models.ClassifierFeedFwd import ClassifierFeedFwd
 from models.ClassifierLogReg import ClassifierLogReg
 from models.ClassifierConvNN import ClassifierConvNN
+from models.autoencoderCNN import AutoencoderCNN
 
 from logger import *
 
@@ -12,9 +13,12 @@ def experiment():
     # logger.log("Working with Feed Forward model.")
     # modelFwd = ClassifierFeedFwd.ClassifierFeedFwd()
     # modelFwd.experiment()
-    logger.log("Working with Convolutional model.")
-    modelCNN = ClassifierConvNN()
-    modelCNN.experiment()
+    # logger.log("Working with Convolutional model.")
+    # modelCNN = ClassifierConvNN()
+    # modelCNN.experiment()
+    logger.log("Experimenting with AutoEncoder")
+    modelAutoEnc = AutoencoderCNN()
+    modelAutoEnc.experiment()
 
 
 if __name__ == "__main__":
